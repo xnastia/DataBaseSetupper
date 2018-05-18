@@ -17,5 +17,6 @@ namespace Models
         public string Phone { get; set; }
 
         public string OrderDetails { get; set; }
-    }
+        public decimal Sum { get; set; }
+      }
 }
