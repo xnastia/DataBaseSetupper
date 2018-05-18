@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Order.cs" />

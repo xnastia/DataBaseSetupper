@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class BaseRepository
+    public class BaseRepository
     {
         protected string connectionString;
         public BaseRepository(string conn)

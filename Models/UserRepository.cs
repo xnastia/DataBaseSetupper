@@ -9,9 +9,9 @@ using Dapper;
 
 namespace Models
 {
-    class UserRepository : BaseRepository
+    public class UserRepository : BaseRepository
     {
-         
+        public UserRepository(string ConnectionString) : base(ConnectionString) { }        
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
@@ -35,7 +35,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Users (Name, Age) VALUES(@Name, @Age); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Users (Name, Email, Password) VALUES(@Name, @Email,@Password); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int userId = db.Query<int>(sqlQuery, user).FirstOrDefault();
                 user.Id = userId;
             }
@@ -46,7 +46,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Users SET Name = @Name, Age = @Age WHERE Id = @Id";
+                var sqlQuery = "UPDATE Users SET Name = @Name, Email = @Email, Password=@Password WHERE Id = @Id";
                 db.Execute(sqlQuery, user);
             }
         }

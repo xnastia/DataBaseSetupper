@@ -28,6 +28,21 @@ namespace DataBaseSetupper
             var db = new StoreDbContext(conn);
             Console.WriteLine("Products Count: {0}", db.Products.Count());
             Console.ReadLine();
+            User Petro = new User() { Name = "Petro", Email = "qwe@mail.ua", Password = "qweqwe" };
+            User Ivan = new User() { Name = "Ivan", Email = "ewq@mail.ua", Password = "ewqewq" };
+            UserRepository UR = new UserRepository(conn);
+            UR.Create(Petro);
+            UR.Create(Ivan);
+            List<User> UL = new List<User>();
+            UL = UR.GetUsers();
+            foreach(User u in UL)
+            {
+                int id = u.Id;
+                User U=UR.Get(id);
+                string s = U.Name + "  " + U.Email + "  " + U.Password;
+                Console.WriteLine(s);
+            }
+            Console.ReadLine();
         }
     }
 }
