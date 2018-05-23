@@ -29,9 +29,9 @@ namespace Models
     var catSport = new Category { Name = "Sport" };
     db.Categories.Add(catSport);
 
-    var vendorXiaomi = new User { Name = "Xiaomi" };
+    var vendorXiaomi = new Vendor { Name = "Xiaomi" };
     db.Vendors.Add(vendorXiaomi);
-    var vendorComanche = new User { Name = "Comanche" };
+    var vendorComanche = new Vendor { Name = "Comanche" };
       db.Vendors.Add(vendorComanche);
 
     db.Products.Add(new Product { Name = "Uma Mini", Description = "Dont buy this", 

@@ -63,7 +63,12 @@
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="CategoryRepository.cs" />
+    <Compile Include="CommentRepository.cs" />
     <Compile Include="OrderItem.cs" />
+    <Compile Include="OrderItemRepository.cs" />
+    <Compile Include="OrderRepository.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Order.cs" />
@@ -72,6 +77,7 @@
     <Compile Include="StoreDbContext.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Vendor.cs" />
+    <Compile Include="VendorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

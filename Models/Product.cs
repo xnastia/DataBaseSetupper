@@ -23,7 +23,7 @@ namespace Models
         [Range(1, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         public decimal Price { get; set; }
 
-        public virtual ICollection<User> Comments { get; set; } 
+        public virtual ICollection<Comment> Comments { get; set; } 
 
         public double AverageRating()
         {
