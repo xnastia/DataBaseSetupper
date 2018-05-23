@@ -31,8 +31,8 @@ namespace UnitTestRepos
             ur.Create(Ivan);
             List<User> getusers = ur.GetUsers();
             int countusers = getusers.Count();
-            Assert.AreEqual(Petro, getusers[countusers-2]);
-            Assert.AreEqual(Ivan, getusers[countusers-1]);
+            Assert.AreEqual(Petro.Id, getusers[countusers-2].Id);
+            Assert.AreEqual(Ivan.Id, getusers[countusers-1].Id);
 
         }
     }
