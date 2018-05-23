@@ -8,10 +8,10 @@ using Dapper;
 
 namespace Models
 {
-    class ProductRepository: BaseRepository
+    public class ProductRepository: BaseRepository
     {
         public ProductRepository(string ConnectionString) : base(ConnectionString) { }
-        public List<Product> GetUsers()
+        public List<Product> GetProducts()
         {
             List<Product> products = new List<Product>();
             using (IDbConnection db = new SqlConnection(connectionString))
@@ -34,7 +34,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Products (Category, Vendor, Name, Description) VALUES(@Category, @Vendor, @Name, @Description); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Products (Name, Description,Price,CategoryId, VendorId) VALUES(@Name, @Description,@Price,@CategoryId, @VendorId); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int productId = db.Query<int>(sqlQuery, product).FirstOrDefault();
                 product.Id = productId;
             }
@@ -45,7 +45,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Products SET  Category=@Category, Vendor=@Vendor, Name = @Name, Description = @Description WHERE Id = @Id";
+                var sqlQuery = "UPDATE Products SET   Name = @Name, Description = @Description, Price=@Price, CategoryId=@CategoryId, VendorId=@VendorId WHERE Id = @Id";
                 db.Execute(sqlQuery, product);
             }
         }
