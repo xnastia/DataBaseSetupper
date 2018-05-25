@@ -12,7 +12,7 @@ namespace Models
     public class CategoryRepository : BaseRepository
     {
         public CategoryRepository(string ConnectionString) : base(ConnectionString) { }
-        public List<Category> GetCategorys()
+        public List<Category> GetCategories()
         {
             List<Category> categories = new List<Category>();
             using (IDbConnection db = new SqlConnection(connectionString))

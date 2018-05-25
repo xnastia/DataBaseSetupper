@@ -12,26 +12,26 @@ namespace Models
     public class VendorRepository : BaseRepository
     {
         public VendorRepository(string ConnectionString) : base(ConnectionString) { }
-        public List<User> GetVendors()
+        public List<Vendor> GetVendors()
         {
-            List<User> vendors = new List<User>();
+            List<Vendor> vendors = new List<Vendor>();
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                vendors = db.Query<User>("SELECT * FROM Vendors").ToList();
+                vendors = db.Query<Vendor>("SELECT * FROM Vendors").ToList();
             }
             return vendors;
         }
-        public User Get(int id)
+        public Vendor Get(int id)
         {
-            User vendor = null;
+            Vendor vendor = null;
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                vendor = db.Query<User>("SELECT * FROM Vendors WHERE Id = @id", new { id }).FirstOrDefault();
+                vendor = db.Query<Vendor>("SELECT * FROM Vendors WHERE Id = @id", new { id }).FirstOrDefault();
             }
             return vendor;
         }
 
-        public User Create(User vendor)
+        public Vendor Create(Vendor vendor)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -42,7 +42,7 @@ namespace Models
             return vendor;
         }
 
-        public void Update(User vendor)
+        public void Update(Vendor vendor)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {

@@ -11,8 +11,9 @@ namespace Models
 {
     public class UserRepository : BaseRepository
     {
+        public UserRepository() { }
         public UserRepository(string ConnectionString) : base(ConnectionString) { }        
-        public List<User> GetUsers()
+        public virtual List<User> GetUsers()
         {
             List<User> users = new List<User>();
             using (IDbConnection db = new SqlConnection(connectionString))

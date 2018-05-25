@@ -9,6 +9,7 @@ namespace Models
     public class BaseRepository
     {
         protected string connectionString;
+        public BaseRepository() {  }
         public BaseRepository(string conn)
         {
             this.connectionString = conn;

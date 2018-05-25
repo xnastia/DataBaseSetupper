@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
 using System.Linq;
 using System.Collections.Generic;
+using Moq;
+
 namespace UnitTestRepos
 {
     [TestClass]
@@ -19,6 +21,8 @@ namespace UnitTestRepos
             var lastuser = ur.GetUsers().Last();
             Assert.AreEqual("Ivan", lastuser.Name);
         }
+              
+
         [TestMethod]
         public void TestGetUsers()
         {
@@ -35,5 +39,15 @@ namespace UnitTestRepos
             Assert.AreEqual(Ivan.Id, getusers[countusers-1].Id);
 
         }
+        /*[TestMethod]
+        public void TestMockGetUsers()
+        {
+            User Ivan = new User { Name = "Ivan", Email = "ivan@mail.com", Password = "qweqwe" };
+
+            var mock = new Mock<UserRepository>();
+            mock.Setup(a => a.GetUsers()).Returns(new List<User>() {  Ivan  });
+            Assert.AreEqual(Ivan.Id,mock.Object.GetUsers().Last().Id); 
+        }*/
     }
 }
+
