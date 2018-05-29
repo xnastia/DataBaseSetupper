@@ -11,7 +11,7 @@ namespace Models
 {
     public class UserRepository : BaseRepository
     {
-        public UserRepository() { }
+        public UserRepository() : base() { }
         public UserRepository(string ConnectionString) : base(ConnectionString) { }        
         public virtual List<User> GetUsers()
         {

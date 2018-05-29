@@ -11,6 +11,7 @@ namespace Models
 {
     public class VendorRepository : BaseRepository
     {
+        public VendorRepository() : base() { }
         public VendorRepository(string ConnectionString) : base(ConnectionString) { }
         public List<Vendor> GetVendors()
         {

@@ -10,6 +10,7 @@ namespace Models
 {
     public class ProductRepository: BaseRepository
     {
+        public ProductRepository() : base() { }
         public ProductRepository(string ConnectionString) : base(ConnectionString) { }
         public List<Product> GetProducts()
         {

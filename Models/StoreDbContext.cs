@@ -14,6 +14,9 @@ namespace Models
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public StoreDbContext() : this(BaseRepository.GetConnectionString())
+        {
+        }
         public StoreDbContext(string nameOrConnectionString): base(nameOrConnectionString)
         {
             Database.SetInitializer<StoreDbContext>(new StoreDbInitializer());

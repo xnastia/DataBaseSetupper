@@ -11,7 +11,7 @@ namespace Models
 {
     public class CommentRepository : BaseRepository
     {
-        public CommentRepository() { }
+        public CommentRepository() : base() { }
         public CommentRepository(string ConnectionString) : base(ConnectionString) { }
         public virtual List<Comment> GetComments(int ProductId)
         {

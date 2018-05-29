@@ -8,35 +8,34 @@ using Moq;
 namespace UnitTestRepos
 {
     [TestClass]
-    public class UnitTestUserRepository
+    public class UnitTestUserRepository : RepositoryBaseTest
     {
+        protected UserRepository repo;
+        public UnitTestUserRepository() : base() { }
+        [TestInitialize]
+        public void Setup()
+        {
+            this.repo = new UserRepository();
+            User Ivan = new User { Name = "Ivan", Email = "ivan@mail.com", Password = "qweqwe" };
+            repo.Create(Ivan);
+        }
         [TestMethod]
         public void TestCreate()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db= new StoreDbContext(conn);           
-            var ur = new UserRepository(conn);
-            User Ivan = new User { Name = "Ivan", Email = "ivan@mail.com", Password = "qweqwe" };
-            ur.Create(Ivan);
-            var lastuser = ur.GetUsers().Last();
-            Assert.AreEqual("Ivan", lastuser.Name);
+           
+            var lastuser = repo.GetUsers().Last();
+            Assert.AreEqual("Ivan", lastuser.Name, "Last name should be Ivan");
         }
               
 
         [TestMethod]
         public void TestGetUsers()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db = new StoreDbContext(conn);
-            var ur = new UserRepository(conn);
             User Petro = new User { Name = "Petro", Email = "petro@mail.com", Password = "qweqweqwe" };
-            User Ivan = new User { Name = "Ivan", Email = "ivan@mail.com", Password = "qweqwe" };
-            ur.Create(Petro);
-            ur.Create(Ivan);
-            List<User> getusers = ur.GetUsers();
+            repo.Create(Petro);
+            List<User> getusers = repo.GetUsers();
             int countusers = getusers.Count();
-            Assert.AreEqual(Petro.Id, getusers[countusers-2].Id);
-            Assert.AreEqual(Ivan.Id, getusers[countusers-1].Id);
+            Assert.AreEqual(Petro.Id, getusers[countusers-1].Id);
 
         }
         /*[TestMethod]

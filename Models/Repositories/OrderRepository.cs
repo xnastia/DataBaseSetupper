@@ -35,7 +35,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders (Product, Quantity) VALUES(@Product, @Quantity); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Orders (ProductId, Quantity) VALUES(@ProductId, @Quantity); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int orderId = db.Query<int>(sqlQuery, order).FirstOrDefault();
                 order.Id = orderId;
             }
@@ -46,7 +46,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET Product = @Product, Quantity = @Quantity WHERE Id = @Id";
+                var sqlQuery = "UPDATE Orders SET ProductId = @ProductId, Quantity = @Quantity,Sum=@Sum WHERE Id = @Id";
                 db.Execute(sqlQuery, order);
             }
         }

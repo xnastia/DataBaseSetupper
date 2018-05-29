@@ -10,12 +10,16 @@ namespace UnitTestRepos
     [TestClass]
     public class UnitTestVendorRepository
     {
+        VendorRepository vr;
+
+        [TestInitialize]
+        public void Setup() {
+            this.vr = new VendorRepository();
+        }
         [TestMethod]
         public void TestGet()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db = new StoreDbContext(conn);
-            var vr = new VendorRepository(conn);
+       
             Vendor Comanche = new Vendor { Name = "Comanche" };
             vr.Create(Comanche);
             var vendors = vr.GetVendors();
@@ -26,9 +30,7 @@ namespace UnitTestRepos
         [TestMethod]
         public void TestGetVendors()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db = new StoreDbContext(conn);
-            var vr = new VendorRepository(conn);
+   
             Vendor Comanche = new Vendor { Name = "Comanche"};
             Vendor Xiaomi = new Vendor { Name = "Xiaomi"};
             vr.Create(Comanche);

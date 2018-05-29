@@ -10,12 +10,16 @@ namespace UnitTestRepos
     [TestClass]
     public class UnitTestProductRepository
     {
+        ProductRepository pr;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            this.pr = new ProductRepository();
+        }
         [TestMethod]
         public void TestGet()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db = new StoreDbContext(conn);
-            var pr = new ProductRepository(conn);
             Product J17 = new Product { Name = "J17",CategoryId=1, VendorId=1, Description = "qwe",Price=5000};
             pr.Create(J17);
             var products = pr.GetProducts();
@@ -26,9 +30,6 @@ namespace UnitTestRepos
         [TestMethod]
         public void TestDelete()
         {
-            string conn = string.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False", @"(localdb)\Projects", "NewBikeStore");
-            var db = new StoreDbContext(conn);
-            var pr = new ProductRepository(conn);
             Product J17 = new Product { Name = "J17", CategoryId = 1, VendorId = 1, Description = "qwe", Price = 5000 };
             pr.Create(J17);
             Product J19 = new Product { Name = "J19", CategoryId = 1, VendorId = 1, Description = "qwe", Price = 9000 };

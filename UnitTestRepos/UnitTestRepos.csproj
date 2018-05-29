@@ -79,6 +79,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RepositoryBaseTest.cs" />
     <Compile Include="UnitTestCategoryRepository.cs" />
     <Compile Include="UnitTestCommentRepository.cs" />
     <Compile Include="UnitTestProductRepository.cs" />
