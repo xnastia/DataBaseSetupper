@@ -38,8 +38,7 @@ namespace UnitTestRepos
             List<Vendor> getvendors = vr.GetVendors();
             int countvendors = getvendors.Count();
             Assert.AreEqual(Comanche.Id, getvendors[countvendors - 2].Id);
-            Assert.AreEqual(Xiaomi.Id, getvendors[countvendors - 1].Id);
-
+            
         }
     }
 }

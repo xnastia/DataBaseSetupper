@@ -11,17 +11,17 @@ namespace UnitTestRepos
     public class UnitTestProductRepository
     {
         ProductRepository pr;
+        Product J17 = new Product { Name = "J17", CategoryId = 1, VendorId = 1, Description = "qwe", Price = 5000 };
 
         [TestInitialize]
         public void Setup()
         {
             this.pr = new ProductRepository();
+            pr.Create(J17);
         }
         [TestMethod]
         public void TestGet()
-        {
-            Product J17 = new Product { Name = "J17",CategoryId=1, VendorId=1, Description = "qwe",Price=5000};
-            pr.Create(J17);
+        {            
             var products = pr.GetProducts();
             int productcount = products.Count();
             Product J=pr.Get(products[productcount - 1].Id);
@@ -30,8 +30,6 @@ namespace UnitTestRepos
         [TestMethod]
         public void TestDelete()
         {
-            Product J17 = new Product { Name = "J17", CategoryId = 1, VendorId = 1, Description = "qwe", Price = 5000 };
-            pr.Create(J17);
             Product J19 = new Product { Name = "J19", CategoryId = 1, VendorId = 1, Description = "qwe", Price = 9000 };
             pr.Create(J19);
             var products = pr.GetProducts();
