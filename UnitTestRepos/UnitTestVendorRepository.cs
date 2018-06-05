@@ -11,33 +11,32 @@ namespace UnitTestRepos
     public class UnitTestVendorRepository
     {
         VendorRepository vr;
-
+        Vendor Comanche = new Vendor { Name = "Comanche" };
+        
         [TestInitialize]
         public void Setup() {
             this.vr = new VendorRepository();
+            vr.Create(Comanche);
         }
         [TestMethod]
         public void TestGet()
         {
        
-            Vendor Comanche = new Vendor { Name = "Comanche" };
-            vr.Create(Comanche);
             var vendors = vr.GetVendors();
             int vendorscount = vendors.Count();
             Vendor C = vr.Get(vendors[vendorscount - 1].Id);
-            Assert.AreEqual(Comanche.Name, C.Name);
+            Assert.AreEqual(Comanche.Name, C.Name, "Name should be equal");
         }
         [TestMethod]
         public void TestGetVendors()
         {
    
-            Vendor Comanche = new Vendor { Name = "Comanche"};
             Vendor Xiaomi = new Vendor { Name = "Xiaomi"};
             vr.Create(Comanche);
             vr.Create(Xiaomi);
             List<Vendor> getvendors = vr.GetVendors();
             int countvendors = getvendors.Count();
-            Assert.AreEqual(Comanche.Id, getvendors[countvendors - 2].Id);
+            Assert.AreEqual(Comanche.Id, getvendors[countvendors - 2].Id, "Id should be equal");
             
         }
     }

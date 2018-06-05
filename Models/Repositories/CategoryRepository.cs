@@ -11,6 +11,7 @@ namespace Models
 {
     public class CategoryRepository : BaseRepository
     {
+        public CategoryRepository() : base() { }
         public CategoryRepository(string ConnectionString) : base(ConnectionString) { }
         public List<Category> GetCategories()
         {
@@ -35,7 +36,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Categories (Id, Name, ProductsCount) VALUES(@Id, @Name, @ProductsCount); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Categories (Name) VALUES(@Name); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int userId = db.Query<int>(sqlQuery, category).FirstOrDefault();
                 category.Id = userId;
             }

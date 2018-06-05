@@ -80,8 +80,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="RepositoryBaseTest.cs" />
+    <Compile Include="UnitTestOrderItemRepository.cs" />
     <Compile Include="UnitTestCategoryRepository.cs" />
     <Compile Include="UnitTestCommentRepository.cs" />
+    <Compile Include="UnitTestOrderRepository.cs" />
     <Compile Include="UnitTestProductRepository.cs" />
     <Compile Include="UnitTestUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

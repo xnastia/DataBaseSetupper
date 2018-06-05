@@ -25,7 +25,7 @@ namespace UnitTestRepos
             var products = pr.GetProducts();
             int productcount = products.Count();
             Product J=pr.Get(products[productcount - 1].Id);
-            Assert.AreEqual(J17.Name,J.Name);
+            Assert.AreEqual(J17.Name,J.Name, "Name should be equal");
         }
         [TestMethod]
         public void TestDelete()
@@ -36,7 +36,7 @@ namespace UnitTestRepos
             int productcount = products.Count();
             pr.Delete(products[productcount - 1].Id);
             var lastproduct = pr.GetProducts().Last();
-            Assert.AreEqual(lastproduct.Id, J17.Id);
+            Assert.AreEqual(lastproduct.Id, J17.Id, "Id should be equal");
 
         }
     }

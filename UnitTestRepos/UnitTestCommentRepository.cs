@@ -31,7 +31,7 @@ namespace UnitTestRepos
             cr.Create(CCC);
             List<Comment> getcomments = cr.GetComments(C.ProductId);
             int countcomments = getcomments.Count();
-            Assert.AreEqual(CC.Id, getcomments[countcomments - 1].Id);
+            Assert.AreEqual(CC.Id, getcomments[countcomments - 1].Id,"Id should be equal");
 
         }
  
@@ -41,7 +41,7 @@ namespace UnitTestRepos
            
             var mock = new Mock<CommentRepository>();
             mock.Setup(a => a.GetComments(C.ProductId)).Returns(new List<Comment>() { C, CC });
-            Assert.AreEqual( (C.Rating + CC.Rating) / 2.0, CommentRepository.AverageRating(mock.Object,C.ProductId));
+            Assert.AreEqual( (C.Rating + CC.Rating) / 2.0, CommentRepository.AverageRating(mock.Object,C.ProductId), "Average should be equal");
         }
     }
 }

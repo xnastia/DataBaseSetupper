@@ -35,7 +35,7 @@ namespace UnitTestRepos
             repo.Create(Petro);
             List<User> getusers = repo.GetUsers();
             int countusers = getusers.Count();
-            Assert.AreEqual(Petro.Id, getusers[countusers-1].Id);
+            Assert.AreEqual(Petro.Id, getusers[countusers-1].Id, "Id should be equal");
 
         }
         /*[TestMethod]

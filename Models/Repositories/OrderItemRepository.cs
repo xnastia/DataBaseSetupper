@@ -11,6 +11,7 @@ namespace Models
 {
     public class OrderItemRepository : BaseRepository
     {
+        public OrderItemRepository() : base() { }
         public OrderItemRepository(string ConnectionString) : base(ConnectionString) { }
         public List<OrderItem> GetOrderItems()
         {
@@ -35,9 +36,9 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO OrderItems (Name, Phone, OrderDetails) VALUES(@Name, @Phone, @OrderDetails); SELECT CAST(SCOPE_IDENTITY() as int)";
-                int orderId = db.Query<int>(sqlQuery, orderItem).FirstOrDefault();
-                orderItem.Id = orderId;
+                var sqlQuery = "INSERT INTO OrderItems (OrderId, ProductId, Quantity) VALUES(@OrderId, @ProductId, @Quantity); SELECT CAST(SCOPE_IDENTITY() as int)";
+                int orderItemId = db.Query<int>(sqlQuery, orderItem).FirstOrDefault();
+                orderItem.Id = orderItemId;
             }
             return orderItem;
         }
@@ -46,7 +47,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE OrderItems SET Name = @Name, Phone = @Phone, OrderDetails=@OrderDetails WHERE Id = @Id";
+                var sqlQuery = "UPDATE OrderItems SET OrderId=@OrderId, ProductId=@ProductId, Quantity=@Quantity WHERE Id = @Id";
                 db.Execute(sqlQuery, orderItem);
             }
         }

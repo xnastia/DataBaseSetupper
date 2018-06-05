@@ -6,11 +6,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 
-
 namespace Models
 {
     public class OrderRepository : BaseRepository
     {
+        public OrderRepository() : base() { }
         public OrderRepository(string ConnectionString) : base(ConnectionString) { }
         public List<Order> GetOrders()
         {
@@ -35,7 +35,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders (ProductId, Quantity) VALUES(@ProductId, @Quantity); SELECT CAST(SCOPE_IDENTITY() as int)";
+                var sqlQuery = "INSERT INTO Orders (Name, Phone,OrderDetails,Sum) VALUES(@Name,@Phone,@OrderDetails,@Sum); SELECT CAST(SCOPE_IDENTITY() as int)";
                 int orderId = db.Query<int>(sqlQuery, order).FirstOrDefault();
                 order.Id = orderId;
             }
@@ -46,7 +46,7 @@ namespace Models
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET ProductId = @ProductId, Quantity = @Quantity,Sum=@Sum WHERE Id = @Id";
+                var sqlQuery = "UPDATE Products SET   Name = @Name, Phone = @Phone, OrderDetails=@OrderDetails, Sum=@Sum) WHERE Id = @Id";
                 db.Execute(sqlQuery, order);
             }
         }
@@ -60,4 +60,6 @@ namespace Models
             }
         }
     }
+
 }
+
